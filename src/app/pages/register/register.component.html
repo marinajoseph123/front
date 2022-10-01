@@ -1,0 +1,51 @@
+<form action="action_page.php" #registerForm="ngForm"  (ngSubmit)="handleRegister(registerForm)">
+    <div class="container">
+           <hr>
+      <img src="/assets/images/ecom.png" class="w-75" class="h-5"><br><br>
+      <label for="name"><b>Name</b></label>
+      <input type="text" placeholder="Enter Name" class="w-100" 
+       [(ngModel)]="userData.name" name="name" #name="ngModel"  required minlength="3" pattern="^[a-zA-Z]+$"> <br><br>
+       <div class="alert alert-danger" *ngIf="registerForm.submitted && name.invalid">
+        <div *ngIf="name.errors?.['required']">
+            name is required
+        </div>
+        <div *ngIf="name.errors?.['minlength']">
+            min length = 3
+        </div>
+        <div *ngIf="name.errors?.['pattern']">
+            name must be letters
+        </div>
+     </div>
+      <label for="age"><b>Age</b></label>
+      <input type="text" placeholder="Enter Age" class="w-100" 
+      [(ngModel)]="userData.age" name="age" #age="ngModel" required>  <br><br>
+      <div class="alert alert-danger" *ngIf="registerForm.submitted && age.invalid">
+      <div *ngIf="age.errors?.['required']">
+        age is required
+    </div>
+    </div>
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" class="w-100" 
+      [(ngModel)]="userData.email" name="email" #email="ngModel" required email >
+       <br><br>
+       <div class="alert alert-danger" *ngIf="registerForm.submitted && email.invalid">
+       <div *ngIf="email.errors?.['required']">
+       email is required
+    </div>
+    </div>
+        <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" class="w-100" 
+      [(ngModel)]="userData.password" name="password" #password="ngModel" required> 
+       <br><br>
+       <div class="alert alert-danger" *ngIf="registerForm.submitted && password.invalid">
+
+       <div *ngIf="password.errors?.['required']">
+        password is required
+    </div>
+       <div *ngIf="password.errors?.['minlength']">
+        min length = 7
+    </div>
+       </div>
+      <button type="submit" class="registerbtn" class="w-100" class="btn btn-primary w-100" routerLink="/Register/">Register</button>  <br><br>
+    </div>
+     </form>

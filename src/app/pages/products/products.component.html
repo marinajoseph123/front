@@ -1,0 +1,37 @@
+<div *ngIf="loadingImg ; else data">
+    <img src="/assets/images/loading.gif" class="w-75">
+</div>
+<ng-template #data>
+    <div class="row">
+        <div class="col-12" *ngFor="let product of products | paginate: { 
+            id: 'productsPagination',
+        itemsPerPage: pageSize,
+        currentPage: p,
+        totalItems: total }
+        ">
+                    <div class="card">
+                <div class="card-body">
+                    <h2>{{product._id}}</h2>
+                    <h2>{{product.name}}</h2>
+                    <h2>{{product.price}}</h2>
+                    <h2>{{product.image}}</h2>
+
+                    <button class="btn btn-primary" routerLink="/products/{{product._id}}">Show Single Product</button>
+                </div>
+            </div>
+        </div>
+        <pagination-controls  id="productsPagination"
+        (pageChange)="pageChanged($event)"
+        (pageBoundsCorrection)="pageChanged($event)"
+        [maxSize]="9"
+        [directionLinks]="true"
+        [autoHide]="true"
+        [responsive]="true"
+        previousLabel="Previous"
+        nextLabel="Next"
+        screenReaderPaginationLabel="Pagination"
+        screenReaderPageLabel="page"
+        screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+        </div>
+</ng-template>

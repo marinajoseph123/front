@@ -1,0 +1,44 @@
+<div class="row justify-content-center">
+    <div class="col-8 mt-4">
+        <table class="table border border-secondary">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Email</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- let i = index -->
+
+                <tr *ngFor="let user of users  | paginate: { id: 'usersPagination',
+                itemsPerPage: pageSize,
+                currentPage: p,
+                totalItems: total }">
+                    <td>{{user.name}}</td>
+                    <td>{{user.age}}</td>
+                    <td>{{user.email}}</td>
+                    <td>
+                        <button class="btn btn-primary btn-sm" routerLink="/edit-user/{{user._id}}">Edit</button>
+                        <!-- <button class="btn btn-danger btn-sm mx-3" (click)="handledeleteUser (user._id , i)">Delete</button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <pagination-controls  id="usersPagination"
+    (pageChange)="pageChanged($event)"
+    (pageBoundsCorrection)="pageChanged($event)"
+    [maxSize]="9"
+    [directionLinks]="true"
+    [autoHide]="true"
+    [responsive]="true"
+    previousLabel="Previous"
+    nextLabel="Next"
+    screenReaderPaginationLabel="Pagination"
+    screenReaderPageLabel="page"
+    screenReaderCurrentLabel="You're on page">
+</pagination-controls>
+</div>
+

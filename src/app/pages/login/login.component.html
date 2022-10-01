@@ -1,0 +1,33 @@
+            <form class="row gy-4 mt-4" [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+        <div class="col-12">
+                    <img src="/assets/images/ecom.png" class="w-75" class="h-5"><br><br>
+                    <hr>         
+            <input type="text" class="form-control" placeholder="enter your email"
+             formControlName="email"  >
+             <div class="alert alert-danger"  *ngIf="isSubmit && userEmail?.invalid">
+                <div *ngIf="userEmail?.errors?.['required']">
+                    email is required
+                </div>
+                <div *ngIf="userEmail?.errors?.['email']">
+                    invalid email
+                </div>               
+             </div>
+        </div>
+        <hr>
+        <div class="col-12">
+            <input type="password" class="form-control" placeholder="enter your password"
+             formControlName="password">
+             <div class="alert alert-danger" *ngIf="userData?.['password']?.invalid" >
+                <div *ngIf="userData?.['password']?.errors?.['required']">
+                    password is required
+                </div>
+                <div *ngIf="userData?.['password']?.errors?.['minlength']">
+                    password must be at least 5
+                </div> 
+            </div>
+        </div>
+        <hr>
+        <div class="col-12">
+            <button class="btn btn-primary" class="w-100">Log in</button>
+        </div>
+           </form>

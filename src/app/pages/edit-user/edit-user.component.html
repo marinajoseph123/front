@@ -1,0 +1,15 @@
+<form class="row gy-4 mt-4" [formGroup]="userInfo" (ngSubmit)="handleEdit()">
+    <div class="col-6">
+        <input type="text" placeholder="name" class="form-control" formControlName="name">
+    </div>
+    <div class="col-6">
+        <input type="text" placeholder="age" class="form-control" formControlName="age">
+    </div>
+    <div class="col-6">
+        <input type="file" class="form-control" (change)="handleUpload($event)">
+        <button class="btn btn-primary">Uploading Img</button>    </div>
+    <div class="col-12">
+        <button class="btn btn-primary">Edit User</button>
+    </div>
+
+</form>
